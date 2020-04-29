@@ -12,7 +12,7 @@ LedPattern testPattern = {
 */
 
 LedPatternSet const TEST_LED_PATTERN_SET = {
-    2, 
+    4,
     {
         // Pattern 0
         {21, 
@@ -26,6 +26,18 @@ LedPatternSet const TEST_LED_PATTERN_SET = {
         {4, 
             {
                 {500,200}, {0, 200}, {500, 200}, {0, 1000}      // two short blinks.
+            }
+        },
+        // Pattern 2
+        {6,
+            {
+                {500,600}, {0, 200}, {500, 200}, {0, 200}, {500,600}, {0, 1200}      // morse code "k": dash dot dash;
+            }
+        },
+        // Pattern 3
+        {2,
+            {
+                {500, 200}, {0, 1200}      // morse code "e": dot;
             }
         }
     }

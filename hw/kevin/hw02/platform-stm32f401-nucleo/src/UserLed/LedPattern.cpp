@@ -4,7 +4,7 @@ namespace APP {
 
 LedPatternSet const TEST_LED_PATTERN_SET = {
     // UW 2019 - Change the number of patterns to 4 after appending two of yours below.
-	2,	// Number of patterns.
+	4,	// Number of patterns.
     {
         // Pattern 0
         {21, 
@@ -19,10 +19,20 @@ LedPatternSet const TEST_LED_PATTERN_SET = {
             {
                 {500,200}, {0, 200}, {500, 200}, {0, 1000}      // two short blinks.
             }
+        },
+        // Pattern 2
+        {6,
+            {
+                {500,600}, {0, 200}, {500, 200}, {0, 200}, {500,600}, {0, 1200}      // morse code "k": dash dot dash;
+            }
+        },
+        // Pattern 3
+        {2,
+            {
+                {500, 200}, {0, 1200}      // morse code "e": dot;
+            }
         }
-        // UW 2019 - Add two of your own patterns here.
-        // Pattern 2 ...
-        // Pattern 3 ...
+        // UW 2019 - Add patterns here.
     }
 };
 

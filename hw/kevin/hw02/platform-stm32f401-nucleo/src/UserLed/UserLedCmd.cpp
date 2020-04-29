@@ -186,6 +186,40 @@ static CmdStatus Test(Console &console, Evt const *e) {
     return CMD_DONE;
 }
 
+
+static void PrintPattern(Console &console, const LedPattern *p){
+	for (uint32_t i=0;i<(p->m_count);i++) {
+		LedInterval interval = p->GetInterval(i);
+		uint32_t lvl = interval.GetLevelPermil();
+		uint32_t dur = interval.GetDurationMs();
+		console.Print("{%d, %d} ", lvl, dur);
+	}
+	console.Print("\n\r");
+}
+
+static void RunLedPattern(Console &console, const LedPattern *p){
+	PrintPattern(console, p);
+	for (uint32_t i=0;i<(p->m_count);i++) {
+		LedInterval interval = p->GetInterval(i);
+		uint32_t lvl = interval.GetLevelPermil();
+		uint32_t dur = interval.GetDurationMs();
+		ConfigPwm(lvl);
+		Delay(dur);
+	}
+	/*
+	// Being sample code.
+    ConfigPwm(1000);
+    Delay(200);
+    ConfigPwm(0);
+    Delay(200);
+    ConfigPwm(200);
+    Delay(200);
+    ConfigPwm(0);
+    // End sample code
+     */
+	return;
+}
+
 static CmdStatus On(Console &console, Evt const *e) {
     switch (e->sig) {
         case Console::CONSOLE_CMD: {
@@ -196,23 +230,30 @@ static CmdStatus On(Console &console, Evt const *e) {
                 if (ind.Argc() >= 3 && STRING_EQUAL(ind.Argv(2), "0")) {
                     repeat = false;
                 }
-                console.Print("pattern = %d, repeat = %d\n\r", pattern, repeat);
+                //console.Print("pattern = %d, repeat = %d\n\r", pattern, repeat);
                 // UW 2019 - Implement the command to display the indexed pattern. If repeat is "0", it is shown once;
                 //           otherwise it is shown 5 times. Handle the case when the index is out of range.
                 //           As a reminder, the set of LED patterns is defined in the structure TEST_LED_PATTERN_SET.
                 // Sample code to show how to use the API to control LED brightness and add delay. Please remove or comment
                 // it when adding your own code.
-                // Being sample code.
+                console.Print("pattern = %d, repeat = %d\n\r", pattern, repeat);
                 InitGpio();
-                ConfigPwm(1000);
-                Delay(200);
-                ConfigPwm(0);
-                Delay(200);
-                ConfigPwm(200);
-                Delay(200);
-                ConfigPwm(0);
-                // End sample code.
-                return CMD_DONE;
+                const LedPattern *p = TEST_LED_PATTERN_SET.GetPattern(pattern);
+                if (p != NULL) {
+                    if (!repeat) {
+                    	RunLedPattern(console, p);
+                    } else {
+                    	for (int i=0;i<5;i++) {
+                    		RunLedPattern(console, p);
+                    	}
+                    }
+                    return CMD_DONE;
+                }
+                else {
+                	console.Print("Pattern is not defined\n\r");
+                	return CMD_DONE;
+                }
+
             }
             console.Print("led on <pattern idx> [0=once,*other=repeat]\n\r");
             return CMD_DONE;

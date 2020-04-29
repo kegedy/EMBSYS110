@@ -28,17 +28,16 @@ public:
     LedInterval m_interval[COUNT];   // Array of intervals. Used ones start from index 0.
     
     // UW 2019
-    /*
     uint32_t GetCount() const { 
-        return ...
+        return m_count;
     }
 
     // Returns a reference to the indexed LED interval object.
     // Use FW_ASSERT() to ensure index is in range.
     LedInterval const &GetInterval(uint32_t index) const {
-        return ...
+    	LED_PATTERN_ASSERT(index<m_count&&index<COUNT);
+        return m_interval[index];
     }
-    */
 };
 
 class LedPatternSet {
@@ -50,17 +49,16 @@ public:
     LedPattern m_pattern[COUNT];    // Array of patterns. Used ones start from index 0.
     
     // UW 2019
-    /*
+
     uint32_t GetCount() const {
-        return ...
+        return m_count;
     }
 
     // Returns NULL if index is out-of-range. Otherwise returns a pointer to the indexed LED pattern object.
     LedPattern const *GetPattern(uint32_t index) const {
-        ...
-        return ...
+    	if (index>=m_count) {return NULL;}
+    	else {return &m_pattern[index];}
     }
-    */
 };
 
 // Declaration of an instance of LedPatternSet defined in LedPattern.cpp.

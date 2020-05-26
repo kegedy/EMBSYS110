@@ -1,0 +1,28 @@
+state
+HSM states:
+===========
+UNDEF(0) - UNDEF                                        SYSTEM(1) - Started                                     
+CONSOLE_UART2(2) - Interactive                          CONSOLE_UART1(3) - Stopped                              
+CMD_INPUT_UART2(4) - CmdReady                           CMD_INPUT_UART1(5) - Stopped                            
+CMD_PARSER_UART2(6) - SimpleArg                         CMD_PARSER_UART1(7) - Stopped                           
+UART2_ACT(8) - Normal                                   UART1_ACT(9) - Stopped                                  
+UART2_IN(10) - Inactive                                 UART1_IN(11) - Stopped                                  
+UART2_OUT(12) - Normal                                  UART1_OUT(13) - Stopped                                 
+WIFI_ST(14) - Stopped                                   LEDPANEL(15) - Stopped                                  
+ILI9341(16) - Idle                                      IKS01A1(17) - UNDEF                                     
+IKS01A1_ACCEL_GYRO(18) - Stopped                        IKS01A1_HUMID_TEMP(19) - Stopped                        
+IKS01A1_MAG(20) - Stopped                               IKS01A1_PRESS(21) - Stopped                             
+GPIO_IN_ACT(22) - Root                                  USER_BTN(23) - Inactive                                 
+ACCEL_GYRO_INT(24) - Stopped                            MAG_INT(25) - Stopped                                   
+MAG_DRDY(26) - Stopped                                  HUMID_TEMP_DRDY(27) - Stopped                           
+PRESS_INT(28) - Stopped                                 DEMO(29) - S211                                         
+USER_LED(30) - Stopped                                  TEST_LED(31) - Stopped                                  
+AO_WASHING_MACHINE(32) - DoorOpen                       TRAFFIC(33) - Started                                   
+LAMP_NS(34) - Red                                       LAMP_EW(35) - Red                                       
+LEVEL_METER(36) - Normal                                SIMPLE_ACT(37) - Started                                
+UNDEF(38) - UNDEF                                       COMPOSITE_ACT(39) - Started                             
+COMPOSITE_REG0(40) - Started                            COMPOSITE_REG1(41) - Started                            
+COMPOSITE_REG2(42) - Started                            COMPOSITE_REG3(43) - Started                            
+
+
+566080 CONSOLE_UART2> x 

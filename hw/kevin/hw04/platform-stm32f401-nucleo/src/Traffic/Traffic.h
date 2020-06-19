@@ -60,22 +60,36 @@ protected:
     static QState Root(Traffic * const me, QEvt const * const e);
         static QState Stopped(Traffic * const me, QEvt const * const e);
         static QState Started(Traffic * const me, QEvt const * const e);
-           static QState NSGo(Traffic * const me, QEvt const * const e);
            static QState NSSlow(Traffic * const me, QEvt const * const e);
-           static QState EWGo(Traffic * const me, QEvt const * const e);
+           static QState NSGo(Traffic * const me, QEvt const * const e);
+           	   static QState NSGoIdle(Traffic * const me, QEvt const * const e);
+           	   static QState NSGoPrimed(Traffic * const me, QEvt const * const e);
+           	   static QState NSGoReady(Traffic * const me, QEvt const * const e);
            static QState EWSlow(Traffic * const me, QEvt const * const e);
+           static QState EWGo(Traffic * const me, QEvt const * const e);
+			   static QState EWGoIdle(Traffic * const me, QEvt const * const e);
+			   static QState EWGoPrimed(Traffic * const me, QEvt const * const e);
+			   static QState EWGoReady(Traffic * const me, QEvt const * const e);
+
 
     Lamp m_lampNS;          // Orthogonal region for the NS lamp.
     Lamp m_lampEW;          // Orthogonal region for the EW lamp.
 
     enum {
-        NS_SLOW_TIMEOUT_MS     = 3000,
-        EW_SLOW_TIMEOUT_MS     = 3000,
+        NS_SLOW_TIMEOUT_MS         = 3000,
+		NS_MIN_DURATION_MS         = 20000,
+        EW_SLOW_TIMEOUT_MS         = 3000,
+		EW_MIN_DURATION_MS         = 10000,
+		EW_NO_TRAFFIC_TIMEMOUT_TS  = 15000,
     };
     Timer m_waitTimer;       // Timer used to wait for the yellow light (slow-down) duration in either direction.
+    Timer m_noTrafficTimer;
+    bool m_changeReq;
+
 
 #define TRAFFIC_TIMER_EVT \
-    ADD_EVT(WAIT_TIMER)
+    ADD_EVT(WAIT_TIMER) \
+	ADD_EVT(NOTRAFFIC_TIMER)
 
 // Placeholder only.
 #define TRAFFIC_INTERNAL_EVT \

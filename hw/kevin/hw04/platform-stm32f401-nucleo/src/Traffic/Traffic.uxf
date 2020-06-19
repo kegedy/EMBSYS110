@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <help_text>// Uncomment the following line to change the fontsize and font:
 fontsize=11
 fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
@@ -28,7 +27,7 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>160</x>
+      <x>144</x>
       <y>0</y>
       <w>1328</w>
       <h>1976</h>
@@ -43,7 +42,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>296</x>
+      <x>280</x>
       <y>232</y>
       <w>1048</w>
       <h>1672</h>
@@ -58,7 +57,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>688</x>
+      <x>672</x>
       <y>104</y>
       <w>200</w>
       <h>88</h>
@@ -75,7 +74,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
+      <x>528</x>
       <y>144</y>
       <w>160</w>
       <h>104</h>
@@ -86,7 +85,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>864</x>
       <y>144</y>
       <w>144</w>
       <h>104</h>
@@ -97,7 +96,7 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>552</x>
+      <x>536</x>
       <y>184</y>
       <w>168</w>
       <h>40</h>
@@ -110,7 +109,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1008</x>
+      <x>992</x>
       <y>184</y>
       <w>168</w>
       <h>40</h>
@@ -123,7 +122,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>392</x>
+      <x>376</x>
       <y>376</y>
       <w>856</w>
       <h>216</h>
@@ -131,7 +130,9 @@ style=wordwrap</panel_attributes>
     <panel_attributes>NSGo
 --
 entry/ ^LAMP_GREEN_REQ(LAMP_NS),
-       ^LAMP_RED_REQ(LAMP_EW)
+       ^LAMP_RED_REQ(LAMP_EW),
+       start waitTimer(NS_MIN_DURATION_MS)
+exit/ stop waitTimer
 
 valign=top
 </panel_attributes>
@@ -140,7 +141,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
+      <x>416</x>
       <y>344</y>
       <w>64</w>
       <h>48</h>
@@ -152,7 +153,7 @@ group=2</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>424</x>
+      <x>408</x>
       <y>344</y>
       <w>16</w>
       <h>16</h>
@@ -164,7 +165,7 @@ group=2</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>904</x>
+      <x>888</x>
       <y>680</y>
       <w>344</w>
       <h>88</h>
@@ -173,7 +174,9 @@ group=2</panel_attributes>
 --
 entry/ ^LAMP_YELLOW_REQ(LAMP_NS)
        start waitTimer(3)
+       m_changeReq = false
 exit/ stop waitTimer
+TRAFFIC_CAR_NS_REQ / m_changeReq = true
 
 valign=top
 </panel_attributes>
@@ -182,7 +185,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>392</x>
+      <x>376</x>
       <y>680</y>
       <w>344</w>
       <h>88</h>
@@ -191,8 +194,9 @@ valign=top
 --
 entry/ ^LAMP_YELLOW_REQ(LAMP_EW)
        start waitTimer(3)
+       m_changeReq = false
 exit/ stop waitTimer
-
+TRAFFIC_CAR_EW_REQ / m_changeReq = true
 valign=top
 </panel_attributes>
     <additional_attributes/>
@@ -200,7 +204,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1064</x>
+      <x>1056</x>
       <y>584</y>
       <w>24</w>
       <h>112</h>
@@ -209,21 +213,9 @@ valign=top
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
-    <id>Text</id>
-    <coordinates>
-      <x>1072</x>
-      <y>632</y>
-      <w>112</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>TRAFFIC_CAR_EW_REQ
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLState</id>
     <coordinates>
-      <x>392</x>
+      <x>376</x>
       <y>840</y>
       <w>864</w>
       <h>224</h>
@@ -232,7 +224,8 @@ style=wordwrap</panel_attributes>
 --
 entry/ ^LAMP_GREEN_REQ(LAMP_EW), 
        ^LAMP_RED_REQ(LAMP_NS)
-
+       start waitTimer(EW_MIN_DURATION_MS)
+exit/ stop waitTimer
 valign=top
 </panel_attributes>
     <additional_attributes/>
@@ -240,7 +233,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
+      <x>272</x>
       <y>1184</y>
       <w>1072</w>
       <h>32</h>
@@ -252,7 +245,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
+      <x>272</x>
       <y>1536</y>
       <w>1072</w>
       <h>32</h>
@@ -264,7 +257,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1064</x>
+      <x>1048</x>
       <y>760</y>
       <w>24</w>
       <h>96</h>
@@ -275,7 +268,7 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1072</x>
+      <x>1056</x>
       <y>792</y>
       <w>112</w>
       <h>24</h>
@@ -285,20 +278,9 @@ style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>544</x>
-      <y>760</y>
-      <w>24</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>Text</id>
     <coordinates>
-      <x>560</x>
+      <x>544</x>
       <y>632</y>
       <w>112</w>
       <h>24</h>
@@ -310,7 +292,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
+      <x>528</x>
       <y>584</y>
       <w>24</w>
       <h>112</h>
@@ -319,21 +301,9 @@ style=wordwrap</panel_attributes>
     <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Text</id>
-    <coordinates>
-      <x>552</x>
-      <y>800</y>
-      <w>112</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>TRAFFIC_CAR_NS_REQ
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>736</x>
+      <x>720</x>
       <y>72</y>
       <w>64</w>
       <h>48</h>
@@ -345,7 +315,7 @@ group=3</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>728</x>
+      <x>712</x>
       <y>72</y>
       <w>16</w>
       <h>16</h>
@@ -357,7 +327,7 @@ group=3</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>336</x>
+      <x>320</x>
       <y>1248</y>
       <w>968</w>
       <h>256</h>
@@ -373,7 +343,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>368</x>
+      <x>352</x>
       <y>1328</y>
       <w>224</w>
       <h>64</h>
@@ -389,7 +359,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>712</x>
+      <x>696</x>
       <y>1328</y>
       <w>224</w>
       <h>64</h>
@@ -404,7 +374,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>424</x>
+      <x>408</x>
       <y>1296</y>
       <w>64</w>
       <h>48</h>
@@ -416,7 +386,7 @@ group=4</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>416</x>
+      <x>400</x>
       <y>1296</y>
       <w>16</w>
       <h>16</h>
@@ -428,7 +398,7 @@ group=4</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>608</x>
+      <x>592</x>
       <y>1344</y>
       <w>96</w>
       <h>24</h>
@@ -440,7 +410,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>584</x>
+      <x>568</x>
       <y>1368</y>
       <w>144</w>
       <h>24</h>
@@ -451,7 +421,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1040</x>
+      <x>1024</x>
       <y>1328</y>
       <w>224</w>
       <h>64</h>
@@ -467,7 +437,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>912</x>
       <y>1368</y>
       <w>128</w>
       <h>24</h>
@@ -478,7 +448,7 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>944</x>
+      <x>928</x>
       <y>1344</y>
       <w>96</w>
       <h>24</h>
@@ -490,7 +460,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>456</x>
+      <x>440</x>
       <y>1384</y>
       <w>24</w>
       <h>136</h>
@@ -501,7 +471,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>464</x>
+      <x>448</x>
       <y>1448</y>
       <w>96</w>
       <h>24</h>
@@ -513,7 +483,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>336</x>
+      <x>320</x>
       <y>1600</y>
       <w>968</w>
       <h>256</h>
@@ -529,7 +499,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>368</x>
+      <x>352</x>
       <y>1680</y>
       <w>224</w>
       <h>64</h>
@@ -545,7 +515,7 @@ valign=top
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>712</x>
+      <x>696</x>
       <y>1680</y>
       <w>224</w>
       <h>64</h>
@@ -561,7 +531,7 @@ valign=top
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>416</x>
+      <x>400</x>
       <y>1648</y>
       <w>16</w>
       <h>16</h>
@@ -573,7 +543,7 @@ group=5</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>424</x>
+      <x>408</x>
       <y>1648</y>
       <w>64</w>
       <h>48</h>
@@ -585,7 +555,7 @@ group=5</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>608</x>
+      <x>592</x>
       <y>1696</y>
       <w>96</w>
       <h>24</h>
@@ -597,7 +567,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>584</x>
+      <x>568</x>
       <y>1720</y>
       <w>144</w>
       <h>24</h>
@@ -608,7 +578,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1040</x>
+      <x>1024</x>
       <y>1680</y>
       <w>224</w>
       <h>64</h>
@@ -624,7 +594,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>912</x>
       <y>1720</y>
       <w>128</w>
       <h>24</h>
@@ -635,7 +605,7 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>944</x>
+      <x>928</x>
       <y>1696</y>
       <w>96</w>
       <h>24</h>
@@ -647,7 +617,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>456</x>
+      <x>440</x>
       <y>1736</y>
       <w>24</w>
       <h>136</h>
@@ -658,7 +628,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>464</x>
+      <x>448</x>
       <y>1808</y>
       <w>96</w>
       <h>24</h>
@@ -670,7 +640,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1040</x>
+      <x>1024</x>
       <y>1416</y>
       <w>224</w>
       <h>64</h>
@@ -685,7 +655,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>912</x>
       <y>1456</y>
       <w>128</w>
       <h>64</h>
@@ -696,7 +666,7 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>936</x>
+      <x>920</x>
       <y>1432</y>
       <w>96</w>
       <h>24</h>
@@ -708,7 +678,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1040</x>
+      <x>1024</x>
       <y>1768</y>
       <w>224</w>
       <h>64</h>
@@ -723,7 +693,7 @@ valign=top
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>912</x>
       <y>1808</y>
       <w>128</w>
       <h>64</h>
@@ -734,12 +704,371 @@ valign=top
   <element>
     <id>Text</id>
     <coordinates>
-      <x>936</x>
+      <x>920</x>
       <y>1784</y>
       <w>96</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>LAMP_OFF_REQ
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1320</x>
+      <y>104</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>392</x>
+      <y>448</y>
+      <w>200</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>NSGoIdle
+--
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>720</x>
+      <y>448</y>
+      <w>208</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>NSGoPrimed
+--
+WAIT_TIMER / ^^DONE
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1016</x>
+      <y>448</y>
+      <w>200</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>NSGoReady
+--
+TRAFFIC_CAR_EW_REQ / ^^DONE
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>608</x>
+      <y>408</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial
+group=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>408</y>
+      <w>64</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+group=6</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>656</x>
+      <y>440</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>432</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+[else]</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>0</x>
+      <y>264</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>608</x>
+      <y>872</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial
+group=8</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>872</y>
+      <w>64</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+group=8</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>656</x>
+      <y>904</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>432</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+[m_changeReq]</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>480</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+TRAFFIC_CAR_EW_REQ</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>528</y>
+      <w>448</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;540.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>896</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+[else]</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>896</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+[m_changeReq]</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>392</x>
+      <y>912</y>
+      <w>200</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>EWGoIdle
+--
+NOTRAFFIC_TIMER / ^^DONE
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>944</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+TRAFFIC_CAR_NS_REQ</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>992</y>
+      <w>448</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;540.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>720</x>
+      <y>912</y>
+      <w>208</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>EWGoPrimed
+--
+WAIT_TIMER / ^^DONE
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1016</x>
+      <y>912</y>
+      <w>200</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>EWGoReady
+--
+entry/ start noTrafficTimer(EW_NO_TRAFFIC_TIMEOUT_MS)
+exit/ stop noTrafficTimer
+TRAFFIC_CAR_EW_REQ / disarm noTrafficTimer
+                     start noTrafficTimer
+TRAFFIC_CAR_NS_REQ / ^^DONE
+NOTRAFFIC_TIMER / ^^DONE
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>608</x>
+      <y>520</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>WAIT_TIMER
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>592</x>
+      <y>984</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>TRAFFIC_CAR_EW_REQ
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1064</x>
+      <y>616</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>DONE
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>760</y>
+      <w>24</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>544</x>
+      <y>792</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>DONE
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
